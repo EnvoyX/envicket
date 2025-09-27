@@ -1,13 +1,23 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { createTicket } from "@/actions/ticket.action";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 function NewTicketForm() {
   const [state, formAction] = useActionState(createTicket, {
     success: false,
     message: "",
   });
+  const router = useRouter();
+  useEffect(() => {
+    if (state.success) {
+      toast.success("Ticket submitted succesfully!");
+      router.push("/tickets");
+    }
+  }, [state.success, router]);
+
   return (
     <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8 border border-gray-200">
       <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">
