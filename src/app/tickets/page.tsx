@@ -1,7 +1,7 @@
 import { getTickets } from "@/actions/ticket.action";
 import { getCurrentUser } from "@/lib/current-user";
 import { redirect } from "next/navigation";
-import { TicketItem } from "@/components/TicketItem";
+import TicketItem from "../../components/TicketItem";
 
 async function TicketsPage() {
   const user = await getCurrentUser();
@@ -19,7 +19,7 @@ async function TicketsPage() {
       ) : (
         <div className="space-y-4 max-w-3xl mx-auto">
           {tickets.map((ticket) => (
-            <TicketItem key={ticket.id} ticket={ticket}></TicketItem>
+            <TicketItem key={ticket.id} ticket={ticket} />
           ))}
         </div>
       )}
