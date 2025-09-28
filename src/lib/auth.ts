@@ -9,7 +9,7 @@ const cookieName = "auth-token";
 export async function signAuthToken(payload: any) {
   try {
     const token = await new SignJWT(payload)
-      .setProtectedHeader({ alg: "H256" })
+      .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("7d")
       .sign(secret);
